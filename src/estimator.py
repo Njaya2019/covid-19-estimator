@@ -1,5 +1,11 @@
+from json import loads
+
 def estimator(data):
 
+    # change json object to a python dictionary
+
+    data = loads(data)
+    
     # Best case
 
     bestCase = Covid19Cases.estimateBestCase(
