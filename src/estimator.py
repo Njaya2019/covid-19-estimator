@@ -1,11 +1,12 @@
-from json import loads
+from json import loads, dumps
+
 
 def estimator(data):
 
     # change json object to a python dictionary
 
     data = loads(data)
-    
+
     # Best case
 
     bestCase = Covid19Cases.estimateBestCase(
@@ -37,7 +38,12 @@ def estimator(data):
             "infectionsByRequestedTime": worstCase_byTime
         }
     }
-    return output_data
+
+    # Changes the output data dictionary to json
+
+    estimated_output = dumps(output_data)
+
+    return estimated_output
 
 # A class containing all functions to estimate covid 19 cases
 
