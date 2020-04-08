@@ -27,12 +27,12 @@ class Covid19Cases():
     @staticmethod
     def estimateImpactCurrentlyInfected(reported_cases):
         """Estimates the possibly infected people"""
-        return reported_cases * 10
+        return float(reported_cases * 10)
 
     @staticmethod
     def estimateSevereCurrentlyInfected(reported_cases):
         """Estimates the severe possibility of infected people"""
-        return reported_cases * 50
+        return float(reported_cases * 50)
 
     @staticmethod
     def estimateInfectionsByTime(days, currently_infected):
@@ -45,4 +45,4 @@ class Covid19Cases():
 
         infenctions_after_specified_days = currently_infected * (2**factor)
 
-        return infenctions_after_specified_days
+        return float(infenctions_after_specified_days)
