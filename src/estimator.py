@@ -1,19 +1,21 @@
 def estimator(data):
     bestCase = Covid19Cases.estimateImpactCurrentlyInfected(
-      data['reportedCases'])
+        data['reportedCases'])
 
     output_data = {
         "data": data,
         "impact": {
             "currentlyInfected": bestCase,
             "infectionsByRequestedTime": Covid19Cases.estimateInfectionsByTime(
-                28, Covid19Cases.estimateImpactCurrentlyInfected(
+                data['timeToElapse'], 
+                Covid19Cases.estimateImpactCurrentlyInfected(
                     data['reportedCases']))},
         "severeImpact": {
             "currentlyInfected": Covid19Cases.estimateSevereCurrentlyInfected(
                 data['reportedCases']),
             "infectionsByRequestedTime": Covid19Cases.estimateInfectionsByTime(
-                28, Covid19Cases.estimateSevereCurrentlyInfected(
+                data['timeToElapse'], 
+                Covid19Cases.estimateSevereCurrentlyInfected(
                     data['reportedCases'])),
         },
     }
