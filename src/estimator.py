@@ -130,7 +130,7 @@ class Covid19Cases():
             # factor for a week
 
             # calculates in weeks
-            infections_inWeeks = 4 ** days
+            infections_inWeeks = 8 ** days
 
             infenctions_in_weeks = currently_infected * (infections_inWeeks)
 
@@ -142,7 +142,7 @@ class Covid19Cases():
             # months = int(days/30)
 
             # calculates in months
-            factor_inMonths = 1024 ** days
+            factor_inMonths = 2048 ** days
 
             infenctions_in_months = currently_infected * (factor_inMonths)
 
