@@ -127,10 +127,12 @@ class Covid19Cases():
             # calculates weeks
             weeks = int(days / 7)
 
-            # The factor for a week is 4, calculates factor in weeks
-            factor_inWeeks = weeks * 4
+            # factor for a week
 
-            infenctions_in_weeks = currently_infected * (factor_inWeeks)
+            # calculates in weeks
+            infections_inWeeks = 4 * weeks
+
+            infenctions_in_weeks = currently_infected * (infections_inWeeks)
 
             return float(infenctions_in_weeks)
 
@@ -139,8 +141,8 @@ class Covid19Cases():
             # calculates months
             months = int(days/30)
 
-            # The factor for a month is 10, calculates the factor in months
-            factor_inMonths = months * 768
+            # calculates in months
+            factor_inMonths = 768 * months
 
             infenctions_in_months = currently_infected * (factor_inMonths)
 
