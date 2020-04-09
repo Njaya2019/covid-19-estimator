@@ -103,17 +103,23 @@ class Covid19Cases():
 
     @staticmethod
     def estimateBestCase(reported_cases):
+
         """Estimates the possibly infected people"""
+
         return float(reported_cases * 10)
 
     @staticmethod
     def estimateWorstCase(reported_cases):
+
         """Estimates the severe possibility of infected people"""
+
         return float(reported_cases * 50)
 
     @staticmethod
     def estimateCasesByTime(days, currently_infected):
+
         """Estimates the number of infections in specified days"""
+
         # calculates the factor
 
         factor = int(days / 3)
@@ -126,13 +132,17 @@ class Covid19Cases():
 
     @staticmethod
     def estimatesevereCasesByRequestedTime(infections_by_requested_time):
+
         """Estimates the percentage of positive cases that are severe"""
+
         severe_positive_cases = (15 / 100) * infections_by_requested_time
         return severe_positive_cases
 
     @staticmethod
     def estimateAvailableHospitalBeds(hospital_beds, severe_positive_cases):
+
         """Estimates hospital beds available for severe positive cases"""
+
         # calculates 90% hospital beds capacity utilized
 
         hospital_beds_utilized = (90 / 100) * hospital_beds
@@ -151,7 +161,9 @@ class Covid19Cases():
 
     @staticmethod
     def estimateSevereCasesRequireIcu(infections_by_requested_time):
+
         """Estimates the number of severe cases that would require ICU"""
+
         # claculate cases ruquiring ICU
 
         cases_requiring_icu = (5 / 100) * infections_by_requested_time
@@ -160,7 +172,9 @@ class Covid19Cases():
 
     @staticmethod
     def estimateSevereCasesRequireVentilators(infections_by_requested_time):
+
         """Estimates cases that would require ventilators"""
+
         # calculates cases requiring ventilators
 
         cases_requiring_ventilators = (2 / 100) * infections_by_requested_time
@@ -169,6 +183,7 @@ class Covid19Cases():
 
     @staticmethod
     def estimateEconomicLoss(days, avg_population, avg_income, infections):
+
         """Estimates the likely economic loss for the region"""
 
         # calculates the income population for the region
