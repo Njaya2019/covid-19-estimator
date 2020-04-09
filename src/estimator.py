@@ -64,13 +64,13 @@ def estimator(data):
 
     bestCase_loss = Covid19Cases.estimateEconomicLoss(
         data["timeToElapse"], data["region"]["avgDailyIncomePopulation"],
-        data["region"]["avgDailyIncomeInUSD"], bestCase_byTime)
+        data["region"]["avgDailyIncomeUSD"], bestCase_byTime)
 
     # Estimated worst case economic loss
 
     worstCase_loss = Covid19Cases.estimateEconomicLoss(
         data["timeToElapse"], data["region"]["avgDailyIncomePopulation"],
-        data["region"]["avgDailyIncomeInUSD"], worstCase_byTime)
+        data["region"]["avgDailyIncomeUSD"], worstCase_byTime)
 
     output_data = {
         "data": data,
@@ -143,19 +143,15 @@ class Covid19Cases():
 
         """Estimates hospital beds available for severe positive cases"""
 
-        # calculates 90% hospital beds capacity utilized
-
-        hospital_beds_utilized = (90 / 100) * hospital_beds
-
         # calculates the hospital beds available for severe cases
 
-        available_hospital_beds = (35 / 100) * hospital_beds_utilized
+        available_hospital_beds = (35 / 100) * hospital_beds
 
         # if severe cases are higher than available beds return a,
         # negative number. Else return the available beds.
 
         if(severe_positive_cases > available_hospital_beds):
-            return available_hospital_beds - severe_positive_cases
+            return int(available_hospital_beds - severe_positive_cases)
         else:
             return available_hospital_beds
 
@@ -188,7 +184,7 @@ class Covid19Cases():
 
         # calculates the income population for the region
 
-        population = int(infections * avg_population)
+        population = infections * avg_population
 
         # Calculates daily economic loss
 
@@ -198,4 +194,4 @@ class Covid19Cases():
 
         economic_loss = daily_income * days
 
-        return economic_loss
+        return round(economic_loss, 1)
