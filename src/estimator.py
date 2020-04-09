@@ -125,7 +125,7 @@ class Covid19Cases():
         if period_type == "weeks":
 
             # calculates weeks
-            weeks = days / 7
+            weeks = int(days / 7)
 
             # The factor for a week is 2, calculates factor in weeks
             factor_inWeeks = weeks * 2
@@ -137,7 +137,7 @@ class Covid19Cases():
         elif period_type == "months":
 
             # calculates months
-            months = days/30
+            months = int(days/30)
 
             # The factor for a month is 10, calculates the factor in months
             factor_inMonths = months * 10
