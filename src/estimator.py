@@ -125,12 +125,12 @@ class Covid19Cases():
         if period_type == "weeks":
 
             # calculates weeks
-            # weeks = int(days / 7)
+            weeks = int(days / 7)
 
             # factor for a week
 
             # calculates in weeks
-            infections_inWeeks = 4 * days
+            infections_inWeeks = 4 * weeks
 
             infenctions_in_weeks = currently_infected * (infections_inWeeks)
 
@@ -139,10 +139,10 @@ class Covid19Cases():
         elif period_type == "months":
 
             # calculates months
-            # months = int(days/30)
+            months = int(days/30)
 
             # calculates in months
-            factor_inMonths = 1024 * days
+            factor_inMonths = 1024 * months
 
             infenctions_in_months = currently_infected * (factor_inMonths)
 
