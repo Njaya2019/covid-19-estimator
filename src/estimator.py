@@ -13,12 +13,12 @@ def estimator(data):
     # Estimated best case after a specified time
 
     bestCase_byTime = Covid19Cases.estimateCasesByTime(
-        data['timeToElapse'], bestCase)
+        data["periodType"], data['timeToElapse'], bestCase)
 
     # Estimated worst case after a specified time
 
     worstCase_byTime = Covid19Cases.estimateCasesByTime(
-        data['timeToElapse'], worstCase)
+        data["periodType"], data['timeToElapse'], worstCase)
 
     # Estimated best case for severe cases after a period of time
 
@@ -116,19 +116,47 @@ class Covid19Cases():
         return float(reported_cases * 50)
 
     @staticmethod
-    def estimateCasesByTime(days, currently_infected):
+    def estimateCasesByTime(period_type, days, currently_infected):
 
         """Estimates the number of infections in specified days"""
 
-        # calculates the factor
+        # Estimation infections numbers in weeks
 
-        factor = int(days / 3)
+        if period_type == "weeks":
 
-        # calculates the estimate of infections after specified days
+            # calculates weeks
+            weeks = days / 7
 
-        infenctions_after_specified_days = currently_infected * (2**factor)
+            # The factor for a week is 2, calculates factor in weeks
+            factor_inWeeks = weeks * 2
 
-        return float(infenctions_after_specified_days)
+            infenctions_in_weeks = currently_infected * (2**factor_inWeeks)
+
+            return float(infenctions_in_weeks)
+
+        elif period_type == "months":
+
+            # calculates months
+            months = days/30
+
+            # The factor for a month is 10, calculates the factor in months
+            factor_inMonths = months * 10
+
+            infenctions_in_months = currently_infected * (2**factor_inMonths)
+
+            return float(infenctions_in_months)
+
+        else:
+
+            # calculates the factor for the days
+
+            factor = int(days / 3)
+
+            # calculates the estimate of infections after specified days
+
+            infenctions_in_days = currently_infected * (2**factor)
+
+            return float(infenctions_in_days)
 
     @staticmethod
     def estimatesevereCasesByRequestedTime(infections_by_requested_time):
