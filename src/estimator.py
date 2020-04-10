@@ -220,25 +220,27 @@ class Covid19Cases():
 
             # Calculates the days available in these weeks
 
-            days_inWeeks = period * 7
+            weeks_to_days = period * 7
 
             # Calculate the income loss for the weeks
 
-            loss = infections * avg_population * avg_income * days_inWeeks
+            loss_InWeeks = (infections * avg_population *\
+                avg_income) / weeks_to_days
 
-            return round(loss, 2)
+            return round(loss_InWeeks, 2)
 
         elif period_type == "months":
 
             # Calculates the days available in these weeks
 
-            days_inMonths = period * 30
+            months_to_days = period * 30
 
             # Calculate the income loss for the months
 
-            loss = infections * avg_population * avg_income * days_inMonths
+            loss_Inmonths = (infections * avg_population *\
+                avg_income) / months_to_days
 
-            return round(loss, 2)
+            return round(loss_Inmonths, 2)
 
         else:
 
@@ -252,6 +254,6 @@ class Covid19Cases():
 
             # calculates economic loss for the days
 
-            economic_loss = daily_income * period
+            economic_loss = (daily_income) / period
 
             return round(economic_loss, 2)
