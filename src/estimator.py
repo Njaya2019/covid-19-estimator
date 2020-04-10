@@ -193,7 +193,7 @@ class Covid19Cases():
         if(severe_positive_cases > total_expected_beds):
             return int(total_expected_beds - severe_positive_cases)
         else:
-            return int(total_expected_beds)
+            return int(total_expected_beds - severe_positive_cases)
 
     @staticmethod
     def estimateSevereCasesRequireIcu(infections_by_requested_time):
