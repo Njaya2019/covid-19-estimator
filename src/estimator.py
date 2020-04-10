@@ -175,7 +175,7 @@ class Covid19Cases():
 
         # calculates the beds occupied
 
-        occupied_beds = (90/100) * hospital_beds
+        occupied_beds = (95/100) * hospital_beds
 
         already_available_beds = hospital_beds - occupied_beds
 
