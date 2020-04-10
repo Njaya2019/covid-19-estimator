@@ -175,11 +175,11 @@ class Covid19Cases():
 
         # calculates the capacity utilization
 
-        utilized_beds = (95/100) * hospital_beds
+        utilized_beds = int((95/100) * hospital_beds)
 
         # calculates the hospital beds available for severe cases
 
-        available_hospital_beds = (35 / 100) * utilized_beds
+        available_hospital_beds = int((35 / 100) * utilized_beds)
 
         # if severe cases are higher than available beds return a,
         # negative number. Else return the available beds.
