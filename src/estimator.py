@@ -224,8 +224,9 @@ class Covid19Cases():
 
             # Calculate the income loss for the weeks
 
-            loss_InWeeks = (infections * avg_population *\
-                avg_income) / weeks_to_days
+            loss_InWeeks = (
+                infections * avg_population * avg_income
+            ) / weeks_to_days
 
             return round(loss_InWeeks, 2)
 
@@ -237,8 +238,9 @@ class Covid19Cases():
 
             # Calculate the income loss for the months
 
-            loss_Inmonths = (infections * avg_population *\
-                avg_income) / months_to_days
+            loss_Inmonths = (
+                infections * avg_population * avg_income
+            ) / months_to_days
 
             return round(loss_Inmonths, 2)
 
