@@ -116,7 +116,7 @@ class Covid19Cases():
         return float(reported_cases * 50)
 
     @staticmethod
-    def estimateCasesByTime(period_type, days, currently_infected):
+    def estimateCasesByTime(period_type, period, currently_infected):
 
         """Estimates the number of infections in specified days"""
 
@@ -125,7 +125,7 @@ class Covid19Cases():
         if period_type == "weeks":
 
             # calculates weeks
-            days_in_weeks = int(days * 7)
+            days_in_weeks = int(period * 7)
 
             # factor for a week
 
@@ -139,7 +139,7 @@ class Covid19Cases():
         elif period_type == "months":
 
             # calculates months
-            days_in_months = int(days * 30)
+            days_in_months = int(period * 30)
 
             # calculates factor
             factor_inMonths = int(days_in_months / 3)
@@ -152,7 +152,7 @@ class Covid19Cases():
 
             # calculates the factor for the days
 
-            factor = int(days / 3)
+            factor = int(period / 3)
 
             # calculates the estimate of infections after specified days
 
