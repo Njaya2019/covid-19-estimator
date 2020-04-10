@@ -63,13 +63,15 @@ def estimator(data):
     # Estimated best case economic loss
 
     bestCase_loss = Covid19Cases.estimateEconomicLoss(
-        data["timeToElapse"], data["region"]["avgDailyIncomePopulation"],
+        data["periodType"], data['timeToElapse'],
+        data["region"]["avgDailyIncomePopulation"],
         data["region"]["avgDailyIncomeInUSD"], bestCase_byTime)
 
     # Estimated worst case economic loss
 
     worstCase_loss = Covid19Cases.estimateEconomicLoss(
-        data["timeToElapse"], data["region"]["avgDailyIncomePopulation"],
+        data["periodType"], data['timeToElapse'],
+        data["region"]["avgDailyIncomePopulation"],
         data["region"]["avgDailyIncomeInUSD"], worstCase_byTime)
 
     output_data = {
@@ -126,8 +128,6 @@ class Covid19Cases():
 
             # calculates weeks
             days_in_weeks = int(period * 7)
-
-            # factor for a week
 
             # calculates in weeks
             factor_inWeeks = int(days_in_weeks / 3)
@@ -208,20 +208,50 @@ class Covid19Cases():
         return int(cases_requiring_ventilators)
 
     @staticmethod
-    def estimateEconomicLoss(days, avg_population, avg_income, infections):
+    def estimateEconomicLoss(
+            period_type, period, avg_population, avg_income, infections
+    ):
 
         """Estimates the likely economic loss for the region"""
 
-        # calculates the income population for the region
+        # Checks if the period type are days, weeks or months
 
-        population = infections * avg_population
+        if period_type == "weeks":
 
-        # Calculates daily economic loss
+            # Calculates the days available in these weeks
 
-        daily_income = population * avg_income
+            days_inWeeks = period * 7
 
-        # calculates economic loss for a specified period
+            # Calculate the income loss for the weeks
 
-        economic_loss = daily_income * days
+            loss = infections * avg_population * avg_income * days_inWeeks
 
-        return round(economic_loss, 1)
+            return round(loss, 2)
+
+        elif period_type == "months":
+
+            # Calculates the days available in these weeks
+
+            days_inMonths = period * 30
+
+            # Calculate the income loss for the months
+
+            loss = infections * avg_population * avg_income * days_inMonths
+
+            return round(loss, 2)
+
+        else:
+
+            # calculates the income population for the region
+
+            population = infections * avg_population
+
+            # Calculates daily economic loss
+
+            daily_income = population * avg_income
+
+            # calculates economic loss for the days
+
+            economic_loss = daily_income * period
+
+            return round(economic_loss, 2)
