@@ -181,7 +181,7 @@ class Covid19Cases():
 
         already_available_beds = total_beds - hospital_beds
 
-        expected_beds = (35 / 100) * hospital_beds
+        expected_beds = (35 / 90) * hospital_beds
 
         total_expected_beds = expected_beds + already_available_beds
 
