@@ -173,25 +173,21 @@ class Covid19Cases():
 
         """Estimates hospital beds available for severe positive cases"""
 
-        # calculates the beds occupied
+        # calculates total beds available
 
-        occupied_beds = (65/100) * hospital_beds
-
-        already_available_beds = hospital_beds - occupied_beds
+        total_beds = (100 * hospital_beds) / 90
 
         # calculates the beds expected to be available for severe cases
 
-        expected_beds = (35 / 100) * hospital_beds
-
-        total_expected_beds = expected_beds + already_available_beds
+        expected_beds = (35 / 100) * total_beds
 
         # if severe cases are higher than available beds return a,
         # negative number. Else return the available beds.
 
-        if(severe_positive_cases > total_expected_beds):
-            return int(total_expected_beds - severe_positive_cases)
+        if(severe_positive_cases > expected_beds):
+            return int(expected_beds - severe_positive_cases)
         else:
-            return int(total_expected_beds - severe_positive_cases)
+            return int(expected_beds)
 
     @staticmethod
     def estimateSevereCasesRequireIcu(infections_by_requested_time):
