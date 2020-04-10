@@ -228,7 +228,7 @@ class Covid19Cases():
                 infections * avg_population * avg_income
             ) / weeks_to_days
 
-            return round(loss_InWeeks, 2)
+            return int(loss_InWeeks)
 
         elif period_type == "months":
 
@@ -242,7 +242,7 @@ class Covid19Cases():
                 infections * avg_population * avg_income
             ) / months_to_days
 
-            return round(loss_Inmonths, 2)
+            return int(loss_Inmonths)
 
         else:
 
@@ -258,4 +258,4 @@ class Covid19Cases():
 
             economic_loss = (daily_income) / period
 
-            return round(economic_loss, 2)
+            return int(economic_loss)
