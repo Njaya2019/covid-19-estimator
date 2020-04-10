@@ -173,17 +173,9 @@ class Covid19Cases():
 
         """Estimates hospital beds available for severe positive cases"""
 
-        # calculates total beds available
-
-        total_beds = (100 * hospital_beds) / 90
-
         # calculates the beds expected to be available for severe cases
 
-        already_available_beds = total_beds - hospital_beds
-
-        expected_beds = (35 / 90) * hospital_beds
-
-        total_expected_beds = expected_beds + already_available_beds
+        total_expected_beds = (35/100) * hospital_beds
 
         # if severe cases are higher than available beds return a,
         # negative number. Else return the available beds.
