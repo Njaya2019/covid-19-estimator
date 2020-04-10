@@ -179,7 +179,7 @@ class Covid19Cases():
 
         already_available_beds = hospital_beds - occupied_beds
 
-        hospital_capacity = (90/100) * hospital_beds
+        hospital_capacity = (95/100) * hospital_beds
 
         # calculates the beds expected to be available for severe cases
 
