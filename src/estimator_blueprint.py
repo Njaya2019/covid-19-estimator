@@ -108,7 +108,7 @@ def estimator_endpoint(outputformat=None):
 
                 estimatedData = estimator(dataToEstimate)
 
-                # If url extension is xml
+                # If the output format variable is xml
 
                 if outputformat == "xml":
 
