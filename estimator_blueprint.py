@@ -23,10 +23,8 @@ def estimator_endpoint(outputformat=None):
     # required form keys
 
     form_keys = (
-        "name", "avgAge", "avgDailyIncomeInUSD",
-        "avgDailyIncomePopulation", "periodType",
-        "timeToElapse", "reportedCases", "population",
-        "totalHospitalBeds"
+        "periodType", "timeToElapse", "region",
+        "reportedCases", "population", "totalHospitalBeds"
     )
 
     # If the request is a post request
@@ -72,7 +70,7 @@ def estimator_endpoint(outputformat=None):
 
         else:
 
-            strings_FormData = (data["name"], data["periodType"])
+            strings_FormData = (data["region"]["name"], data["periodType"])
 
             formStringsSpaces =\
                 FormValidator.checkAbsoluteSpaceCharacters(
@@ -88,25 +86,7 @@ def estimator_endpoint(outputformat=None):
 
             else:
 
-                dataToEstimate = {
-                    "region": {
-                        "name": data["name"],
-                        "avgAge": data["avgAge"],
-                        "avgDailyIncomeInUSD": data[
-                            "avgDailyIncomeInUSD"
-                        ],
-                        "avgDailyIncomePopulation": data[
-                            "avgDailyIncomePopulation"
-                        ]
-                    },
-                    "periodType": data["periodType"],
-                    "timeToElapse": data["timeToElapse"],
-                    "reportedCases": data["reportedCases"],
-                    "population": data["population"],
-                    "totalHospitalBeds": data["totalHospitalBeds"]
-                }
-
-                estimatedData = estimator(dataToEstimate)
+                estimatedData = estimator(data)
 
                 # If the output format variable is xml
 
