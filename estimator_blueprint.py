@@ -131,3 +131,8 @@ def estimator_endpoint(outputformat=None):
                 else:
 
                     return jsonify(estimatedData), 201
+
+    return jsonify({
+        "status": 200,
+        "message": "Post covid-19 data and get the estimates"
+    }), 200
