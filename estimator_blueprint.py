@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, Response
 from form_validator import FormValidator
-from estimator import estimator
+from src.estimator import estimator
 from dicttoxml import dicttoxml
 
 # creates a blueprint object called estimate_blueprint
