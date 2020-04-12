@@ -35,7 +35,7 @@ def estimator_endpoint(dataformat=None):
 
         data = request.get_json()
 
-        # Validating the form data
+        # Validating the form data, for keys and values
 
         formValues = FormValidator.checkEmptyValues(**data)
 
