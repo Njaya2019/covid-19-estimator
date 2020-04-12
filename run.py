@@ -46,7 +46,6 @@ def create_app(enviroment, configfile=None):
 app = create_app(ProductionConfig, 'config.py')
 
 logs = []
-
 # Before and after requests logs endpoint
 
 
@@ -56,8 +55,6 @@ logs = []
 def requests_logs():
 
     """This endpoint returns all requests and responses logs"""
-
-    global logs
 
     string_logs = ''
 
@@ -90,7 +87,7 @@ def after_a_request(response):
 
     g.request_time = datetime.now() - g.request_start_time
 
-    g.log_string = '{}{}  {} ms\n'.format(
+    g.log_string = '{}{}  {}ms\n'.format(
         g.log_string, response.status_code,
         g.request_time.microseconds
     )
