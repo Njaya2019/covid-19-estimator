@@ -1,4 +1,4 @@
-from flask import Flask, request, g
+from flask import Flask, request, g, Response
 from errorhandlers import page_is_forbidden, page_not_found, page_was_deleted,\
                           httpmethod_not_allowed, server_error
 from estimator_blueprint import estimate_blueprint
@@ -45,8 +45,29 @@ def create_app(enviroment, configfile=None):
 
 app = create_app(ProductionConfig, 'config.py')
 
-
 logs = []
+
+# Before and after requests logs endpoint
+
+
+@app.route(
+    '/api/v1/on-covid-19/logs', methods=['GET']
+)
+def requests_logs():
+
+    """This endpoint returns all requests and responses logs"""
+
+    global logs
+
+    string_logs = ''
+
+    for log in logs:
+        string_logs += log
+    text_response = Response(
+        string_logs,
+        status=200, mimetype='text/plain'
+    )
+    return text_response
 
 # All requests to the app
 
@@ -77,24 +98,6 @@ def after_a_request(response):
     logs.append(g.log_string)
 
     return response
-
-# Before and after requests logs endpoint
-
-
-@app.route(
-    '/api/v1/on-covid-19/logs', methods=['GET']
-)
-def requests_logs():
-
-    """This endpoint returns all requests and responses logs"""
-
-    global logs
-
-    string_logs = ''
-
-    for log in logs:
-        string_logs += log
-    return string_logs
 
 # Runs the app
 

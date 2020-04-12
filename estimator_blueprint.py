@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, Response
 from form_validator import FormValidator
 from src.estimator import estimator
 from dicttoxml import dicttoxml
@@ -98,8 +98,12 @@ def estimator_endpoint(dataformat=None):
                 elif dataformat == 'xml':
 
                     xml_estimates = dicttoxml(estimatedData)
+                    xml_response = Response(
+                        xml_estimates,
+                        status=200, mimetype='application/xml'
+                    )
 
-                    return xml_estimates
+                    return xml_response
 
                 else:
 
