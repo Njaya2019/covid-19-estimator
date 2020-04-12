@@ -1,8 +1,9 @@
 from flask import Flask, request, g, Response
-from errorhandlers import page_is_forbidden, page_not_found, page_was_deleted,\
-                          httpmethod_not_allowed, server_error
-from estimator_blueprint import estimate_blueprint
-from configurations import ProductionConfig
+from src.errorhandlers import page_is_forbidden, page_not_found,\
+                            page_was_deleted, httpmethod_not_allowed,\
+                            server_error
+from src.estimator_blueprint import estimate_blueprint
+from src.configurations import ProductionConfig
 from datetime import datetime
 
 
