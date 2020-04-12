@@ -88,6 +88,8 @@ def estimator_endpoint(dataformat=None):
 
                 estimatedData = estimator(data)
 
+                # Checks if the path variable matches a json or an xml.
+
                 if dataformat == '/json':
 
                     return jsonify(estimatedData)
