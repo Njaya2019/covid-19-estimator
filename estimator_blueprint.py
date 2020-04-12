@@ -14,7 +14,7 @@ estimate_blueprint = Blueprint('estimate', __name__)
     '/api/v1/on-covid-19/', methods=["GET", "POST"]
 )
 @estimate_blueprint.route(
-    '/api/v1/on-covid-19/<string:dataformat>', methods=["GET", "POST"]
+    '/api/v1/on-covid-19<path:dataformat>', methods=["GET", "POST"]
 )
 def estimator_endpoint(dataformat=None):
 
@@ -88,11 +88,11 @@ def estimator_endpoint(dataformat=None):
 
                 estimatedData = estimator(data)
 
-                if dataformat == 'json':
+                if dataformat == '/json':
 
                     return jsonify(estimatedData)
 
-                elif dataformat == 'xml':
+                elif dataformat == '/xml':
 
                     xml_estimates = dicttoxml(estimatedData)
 
