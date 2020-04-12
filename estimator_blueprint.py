@@ -11,7 +11,7 @@ estimate_blueprint = Blueprint('estimate', __name__)
 
 
 @estimate_blueprint.route(
-    '/api/v1/on-covid-19', methods=["GET", "POST"]
+    '/api/v1/on-covid-19/', methods=["GET", "POST"]
 )
 @estimate_blueprint.route(
     '/api/v1/on-covid-19/<string:dataformat>', methods=["GET", "POST"]
