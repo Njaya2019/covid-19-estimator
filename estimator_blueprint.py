@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, Response, g
+from flask import Blueprint, jsonify, request
 from form_validator import FormValidator
 from src.estimator import estimator
 from dicttoxml import dicttoxml
@@ -109,55 +109,3 @@ def estimator_endpoint(dataformat=None):
         "status": 200,
         "message": "Post covid-19 data and get the estimates"
     }), 200
-
-logs = []
-
-# All requests to the blueprint
-
-
-@estimate_blueprint.before_request
-def before_a_request():
-
-    """This Logs all requests issued in the app"""
-
-    g.request_start_time = datetime.now()
-
-    g.log_string = '{}   {}  '.format(request.method, request.path)
-
-
-@estimate_blueprint.after_request
-def after_a_request(response):
-
-    """This Logs all requests issued in the app"""
-
-    global logs
-
-    g.request_time = datetime.now() - g.request_start_time
-
-    g.log_string = '{}{}  {} ms\n'.format(
-        g.log_string, response.status_code,
-        g.request_time.microseconds
-    )
-
-    logs.append(g.log_string)
-
-    return response
-
-
-# Before and after requests logs endpoint
-
-
-@estimate_blueprint.route(
-    '/api/v1/on-covid-19/logs', methods=['GET']
-)
-def requests_logs():
-
-    """This endpoint returns all requests and responses logs"""
-
-    global logs
-
-    string_logs = ''
-
-    for log in logs:
-        string_logs += log
-    return string_logs
