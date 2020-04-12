@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, Response
 from form_validator import FormValidator
 from src.estimator import estimator
-import xmltodict
+from dicttoxml import dicttoxml
 
 # creates a blueprint object called estimate_blueprint
 
@@ -27,26 +27,13 @@ def estimator_endpoint(dataformat=None):
         "reportedCases", "population", "totalHospitalBeds"
     )
 
-    data = ''
     # If the request is a post request
 
     if request.method == "POST":
 
         # Gets form data and converts it to a dict
 
-        if dataformat == 'json':
-
-            data = request.get_json()
-
-        elif dataformat == 'xml':
-
-            data = request.get_data()
-
-            data = xmltodict.parse(data)
-
-        else:
-
-            data = request.get_json()
+        data = request.get_json()
 
         # Validating the form data
 
@@ -101,9 +88,19 @@ def estimator_endpoint(dataformat=None):
 
                 estimatedData = estimator(data)
 
-                # Converts the estimates into a json abject
+                if dataformat == 'json':
 
-                return jsonify(estimatedData)
+                    return jsonify(estimatedData)
+
+                elif dataformat == 'xml':
+
+                    xml_estimates = dicttoxml(estimatedData)
+
+                    return xml_estimates
+
+                else:
+
+                    return jsonify(estimatedData)
 
     return jsonify({
         "status": 200,
